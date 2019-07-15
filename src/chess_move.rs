@@ -1,4 +1,4 @@
-use crate::std_board::*;
+use crate::chess_board::*;
 use board_game_traits::board::Board;
 use pgn_traits::pgn::PgnBoard;
 use std::fmt;

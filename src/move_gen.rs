@@ -1,9 +1,9 @@
-use crate::std_board::ChessBoard;
-use crate::std_board::Piece;
-use crate::std_board::PieceType;
-use crate::std_board::PieceType::*;
-use crate::std_board::Square;
-use crate::std_move::ChessMove;
+use crate::chess_board::ChessBoard;
+use crate::chess_board::Piece;
+use crate::chess_board::PieceType;
+use crate::chess_board::PieceType::*;
+use crate::chess_board::Square;
+use crate::chess_move::ChessMove;
 use board_game_traits::board::Color::*;
 
 use board_game_traits::board::Board;

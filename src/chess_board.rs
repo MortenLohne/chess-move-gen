@@ -1,6 +1,6 @@
 use self::PieceType::*;
 use crate::move_gen;
-use crate::std_move::{ChessMove, ChessReverseMove};
+use crate::chess_move::{ChessMove, ChessReverseMove};
 use board_game_traits::board;
 use board_game_traits::board::Color;
 use board_game_traits::board::Color::*;
@@ -8,7 +8,7 @@ use board_game_traits::board::EvalBoard;
 use pgn_traits::pgn;
 use pgn_traits::pgn::PgnBoard;
 
-use crate::std_move::ChessReverseNullMove;
+use crate::chess_move::ChessReverseNullMove;
 use board_game_traits::board::Board;
 use board_game_traits::board::ExtendedBoard;
 use std::fmt;
