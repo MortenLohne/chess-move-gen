@@ -352,7 +352,6 @@ impl PgnBoard for ChessBoard {
             if alternative_from_squares.is_empty()
                 && (piece_type != Pawn || mv.from.file() == mv.to.file())
             {
-                ();
             }
             // Disambiguate with departure file
             else if alternative_from_squares
@@ -399,7 +398,7 @@ impl PgnBoard for ChessBoard {
             output.push('+');
         }
 
-        return output;
+        output
     }
 
     fn move_from_san(&self, input: &str) -> Result<<Self as Board>::Move, pgn::Error> {
@@ -475,16 +474,16 @@ impl PgnBoard for ChessBoard {
 
         let move_filter: Box<Fn(&ChessMove) -> bool> = match (
             disambig_string.chars().count(),
-            disambig_string.chars().next().clone(),
+            disambig_string.chars().next(),
         ) {
             (0, None) => Box::new(|_| true),
 
             (1, Some(rank)) if rank >= '1' && rank <= '8' => {
-                Box::new(move |mv: &ChessMove| mv.from.rank() == 7 - (rank as u8 - '1' as u8))
+                Box::new(move |mv: &ChessMove| mv.from.rank() == 7 - (rank as u8 - b'1'))
             }
 
             (1, Some(file)) if file >= 'a' && file <= 'h' => {
-                Box::new(move |mv: &ChessMove| mv.from.file() == (file as u8 - 'a' as u8))
+                Box::new(move |mv: &ChessMove| mv.from.file() == (file as u8 - b'a'))
             }
 
             (2, _) if Square::from_alg(&disambig_string).is_ok() => {
@@ -518,7 +517,7 @@ impl PgnBoard for ChessBoard {
                 pgn::ErrorKind::AmbiguousMove,
                 format!("{} could be any of {:?}", input, filtered_moves),
             ))
-        } else if filtered_moves.len() == 0 {
+        } else if filtered_moves.is_empty() {
             Err(pgn::Error::new(
                 pgn::ErrorKind::IllegalMove,
                 format!(
@@ -538,7 +537,7 @@ impl PgnBoard for ChessBoard {
                 ),
             ))
         } else {
-            Ok(filtered_moves[0].clone())
+            Ok(*filtered_moves[0])
         }
     }
 

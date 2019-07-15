@@ -38,7 +38,7 @@ pub struct ChessMove {
 
 impl fmt::Display for ChessMove {
     fn fmt(&self, fmt: &mut fmt::Formatter) -> Result<(), fmt::Error> {
-        fmt.write_str(&format!("{}", ChessBoard::start_board().move_to_lan(self)))
+        fmt.write_str(&ChessBoard::start_board().move_to_lan(self).to_string())
             .unwrap();
         Ok(())
     }
