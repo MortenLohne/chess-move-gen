@@ -1,14 +1,12 @@
 use crate::chess_board::ChessBoard;
-use crate::chess_board::Piece;
-use crate::chess_board::PieceType;
-use crate::chess_board::PieceType::*;
-use crate::chess_board::Square;
 use crate::chess_move::ChessMove;
 use board_game_traits::board::Color::*;
 
 use board_game_traits::board::Board;
 use board_game_traits::board::Color;
 use std::cmp::Ordering;
+
+use crate::types::{Piece, PieceType, PieceType::*, Square};
 
 #[inline(never)]
 pub fn all_legal_moves(board: &ChessBoard) -> (Vec<ChessMove>, Vec<ChessMove>) {

@@ -1,4 +1,5 @@
 use crate::chess_board::*;
+use crate::types::{PieceType, Square};
 use board_game_traits::board::Board;
 use pgn_traits::pgn::PgnBoard;
 use std::fmt;
